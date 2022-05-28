@@ -1,3 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'FiraMono';
+  src: url(/assets/fonts/FiraMono.ttf);
+  display: swap;
+}
+
+* {
+  font-family: 'FiraMono', monospace;
+}
+
 html,
 body {
   padding: 0;
