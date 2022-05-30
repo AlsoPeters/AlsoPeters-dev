@@ -3,25 +3,47 @@ import React, { useState } from 'react';
 
 export default function Home() {
   const [alsoPetersSelected, setAlsoPetersSelected] = useState(true);
-  const [resumeSelected, setResumeSelected] = useState(false);
+  const [linksSelected, setLinksSelected] = useState(false);
   const [githubSelected, setGithubSelected] = useState(false);
+
+  const [aboutMe, setAboutMe] = useState(true);
+  const [github, setGithub] = useState(false);
+  const [resume, setResume] = useState(false);
 
   function selectAlsoPeters() {
     setAlsoPetersSelected(true);
-    setResumeSelected(false);
+    setLinksSelected(false);
     setGithubSelected(false);
   }
 
   function selectResume() {
     setAlsoPetersSelected(false);
-    setResumeSelected(true);
+    setLinksSelected(true);
     setGithubSelected(false);
   }
 
   function selectGithub() {
     setAlsoPetersSelected(false);
-    setResumeSelected(false);
+    setLinksSelected(false);
     setGithubSelected(true);
+  }
+
+  function clickAboutMe() {
+    setAboutMe(true);
+    setGithub(false);
+    setResume(false);
+  }
+
+  function clickGithub() {
+    setAboutMe(false);
+    setGithub(true);
+    setResume(false);
+  }
+
+  function clickLinks() {
+    setAboutMe(false);
+    setGithub(false);
+    setResume(true);
   }
 
   return (
@@ -35,8 +57,8 @@ export default function Home() {
           <div
             className={
               alsoPetersSelected === true
-                ? 'mb-1 border-2 text-purple-500 border-purple-500 rounded-md grow'
-                : 'mb-1 border-2 text-white border-white rounded-md flex-none'
+                ? 'mb-1 border-2 text-purple-500 border-purple-400 rounded-md grow'
+                : 'mb-1 border-2 text-white border-gray-500 rounded-md flex-none'
             }
           >
             <div
@@ -45,28 +67,52 @@ export default function Home() {
             >
               AlsoPeters
             </div>
+            {alsoPetersSelected === true ? (
+              <ul className='px-6 text-gray-50'>
+                <li
+                  className={aboutMe === true ? 'bg-purple-500 pl-2' : <></>}
+                  onClick={clickAboutMe}
+                >
+                  {aboutMe === true ? '> About Me' : 'About Me'}
+                </li>
+                <li
+                  className={github === true ? 'bg-purple-500 pl-2' : <></>}
+                  onClick={clickGithub}
+                >
+                  {github === true ? '> Github' : 'Github'}
+                </li>
+                <li
+                  className={resume === true ? 'bg-purple-500 pl-2' : <></>}
+                  onClick={clickLinks}
+                >
+                  {resume === true ? '> Resume' : 'Resume'}
+                </li>
+              </ul>
+            ) : (
+              <></>
+            )}
           </div>
 
           <div
             className={
-              resumeSelected === true
-                ? 'mb-1 border-2 text-purple-500 border-purple-500 rounded-md grow mt-4'
-                : 'mb-1 border-2 h-16 text-white border-white rounded-md flex-none mt-4'
+              linksSelected === true
+                ? 'mb-1 border-2 text-purple-500 border-purple-400 rounded-md grow mt-4'
+                : 'mb-1 border-2 h-16 text-white border-gray-500 rounded-md flex-none mt-4'
             }
           >
             <div
               onClick={selectResume}
               className='px-1 ml-6 text-2xl text-center -translate-y-4 bg-black select-none max-w-fit hover:cursor-pointer '
             >
-              Resume
+              Links
             </div>
           </div>
 
           <div
             className={
               githubSelected === true
-                ? 'mb-1 border-2 text-purple-500 border-purple-500 rounded-md grow mt-4'
-                : 'mb-1 border-2 h-16 text-white border-white rounded-md flex-none mt-4'
+                ? 'mb-1 border-2 text-purple-500 border-purple-300 rounded-md grow mt-4'
+                : 'mb-1 border-2 h-16 text-white border-gray-500 rounded-md flex-none mt-4'
             }
           >
             <div
@@ -79,14 +125,14 @@ export default function Home() {
         </div>
 
         <div className='flex flex-col w-2/3 ml-2 '>
-          <div className='border-2 border-white rounded-md grow'>
+          <div className='border-2 border-purple-300 rounded-md grow'>
             <p className='p-4 text-gray-200'>
               {' '}
               My name is Kyle Ryan Garcia and I'm a web developer living in
               Japan.
             </p>
           </div>
-          <div className='flex-none h-16 mt-4 mb-1 border-2 rounded-md border-grey-500'>
+          <div className='flex-none h-16 mt-4 mb-1 border-2 border-gray-500 rounded-md'>
             <div className='px-1 ml-4 font-bold text-blue-500 -translate-y-3 bg-black max-w-fit'>
               Currently Listening To
             </div>
