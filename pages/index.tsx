@@ -6,6 +6,12 @@ export default function Home() {
   const [resumeSelected, setResumeSelected] = useState(false);
   const [githubSelected, setGithubSelected] = useState(false);
 
+  function selectAlsoPeters() {
+    setAlsoPetersSelected(true);
+    setResumeSelected(false);
+    setGithubSelected(false);
+  }
+
   function selectResume() {
     setAlsoPetersSelected(false);
     setResumeSelected(true);
@@ -16,12 +22,6 @@ export default function Home() {
     setAlsoPetersSelected(false);
     setResumeSelected(false);
     setGithubSelected(true);
-  }
-
-  function selectAlsoPeters() {
-    setAlsoPetersSelected(true);
-    setResumeSelected(false);
-    setGithubSelected(false);
   }
 
   return (
@@ -86,10 +86,18 @@ export default function Home() {
               Japan.
             </p>
           </div>
-          <div className='flex-none h-16 mt-4 border-2 rounded-md border-grey-500'>
+          <div className='flex-none h-16 mt-4 mb-1 border-2 rounded-md border-grey-500'>
             <div className='px-1 ml-4 font-bold text-blue-500 -translate-y-3 bg-black max-w-fit'>
               Currently Listening To
             </div>
+            <a
+              href='https://youtu.be/sR1OHW_IReI'
+              rel='noreferrer'
+              target='_blank'
+              className='px-6 text-green-400'
+            >
+              OCTOPATH TRAVELER - メインテーマ -
+            </a>
           </div>
         </div>
       </div>
