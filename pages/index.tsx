@@ -66,7 +66,7 @@ export default function Home() {
         <div className='flex flex-col w-1/3 mr-2'>
           <div
             className={
-              alsoPetersTabActive === true
+              alsoPetersTabActive
                 ? 'mb-1 border-2 text-purple-500 border-purple-400 rounded-md grow'
                 : 'mb-1 border-2 text-white border-gray-500 rounded-md flex-none'
             }
@@ -77,39 +77,31 @@ export default function Home() {
             >
               AlsoPeters
             </div>
-            {alsoPetersTabActive === true ? (
+            {alsoPetersTabActive ? (
               <ul className='px-6 cursor-pointer text-gray-50'>
                 <li
-                  className={
-                    aboutMe === true ? 'bg-purple-500 pl-2 font-bold' : ''
-                  }
+                  className={aboutMe ? 'bg-purple-500 pl-2 font-bold' : ''}
                   onClick={clickAboutMe}
                 >
-                  {aboutMe === true ? '> About Me' : 'About Me'}
+                  {aboutMe ? '> About Me' : 'About Me'}
                 </li>
                 <li
-                  className={
-                    github === true ? 'bg-purple-500 pl-2 font-bold' : ''
-                  }
+                  className={github ? 'bg-purple-500 pl-2 font-bold' : ''}
                   onClick={clickGithub}
                 >
-                  {github === true ? '> Github' : 'Github'}
+                  {github ? '> Github' : 'Github'}
                 </li>
                 <li
-                  className={
-                    resume === true ? 'bg-purple-500 pl-2 font-bold' : ''
-                  }
+                  className={resume ? 'bg-purple-500 pl-2 font-bold' : ''}
                   onClick={clickResume}
                 >
-                  {resume === true ? '> Resume' : 'Resume'}
+                  {resume ? '> Resume' : 'Resume'}
                 </li>
                 <li
-                  className={
-                    contact === true ? 'pl-2 font-bold bg-purple-500' : ''
-                  }
+                  className={contact ? 'pl-2 font-bold bg-purple-500' : ''}
                   onClick={clickContact}
                 >
-                  {contact === true ? '> Contact' : 'Contact'}
+                  {contact ? '> Contact' : 'Contact'}
                 </li>
               </ul>
             ) : (
@@ -119,8 +111,8 @@ export default function Home() {
 
           <div
             className={
-              linkTabActive === true
-                ? 'mb-1 border-2 text-purple-500 border-purple-300 rounded-md grow mt-4'
+              linkTabActive
+                ? 'mb-1 border-2 text-purple-500 border-purple-400 rounded-md grow mt-4'
                 : 'mb-1 border-2 h-16 text-white border-gray-500 rounded-md flex-none mt-4'
             }
           >
@@ -143,16 +135,25 @@ export default function Home() {
             >
               Currently Listening To
             </div>
-            <a
-              href='https://youtu.be/sR1OHWeq ascii gif_IReI'
-              rel='noreferrer'
-              target='_blank'
-              className='px-6 text-green-400'
-            >
-              OCTOPATH TRAVELER - メインテーマ -
-            </a>
-            {currentlyListeningToTabActive === true ? (
-              <div className='mt-20'>
+            <div className='flex flex-col px-6 text-green-500'>
+              <a
+                href='https://youtu.be/sR1OHW_IReI'
+                rel='noreferrer'
+                target='_blank'
+              >
+                OCTOPATH TRAVELER - メインテーマ -
+              </a>
+
+              <a
+                href='https://youtu.be/DlpesZCnCMQ'
+                rel='noreferrer'
+                target='_blank'
+              >
+                RAY - Gravity
+              </a>
+            </div>
+            {currentlyListeningToTabActive ? (
+              <div className='translate-y-16'>
                 <Image width={100} height={100} src={Moogle} alt='Moogle' />
               </div>
             ) : (
@@ -162,30 +163,66 @@ export default function Home() {
         </div>
 
         <div className='flex flex-col w-2/3 ml-2 '>
-          <div className='p-4 text-xl text-gray-200 border-2 border-purple-300 rounded-md grow'>
-            {aboutMe === true ? (
-              <p>
-                {' '}
-                My name is Kyle Ryan Garcia and I'm a web developer living in
-                Hyogo, Japan.
-              </p>
-            ) : github === true ? (
-              <a
-                target='_blank'
-                rel='noreferrer'
-                href='https://github.com/AlsoPeters'
-              >
-                Visit me on Github <span className='text-blue-500'>here</span>.
-              </a>
-            ) : resume === true ? (
-              <p>Coming soon...</p>
-            ) : contact === true ? (
-              <a href='mailto:garcia.kyle.ryan@gmail.com'>
-                Send me an email <span className='text-blue-500'>here</span>.
-              </a>
-            ) : (
-              ''
-            )}
+          <div className='text-xl text-gray-200 border-2 border-purple-400 rounded-md grow'>
+            <div className='px-1 py-2 ml-6 text-2xl font-bold text-center text-green-500 -translate-y-6 bg-black select-none hover:cursor-crosshair max-w-fit'>
+              {aboutMe
+                ? 'About_Me'
+                : github
+                ? 'Github'
+                : resume
+                ? 'Resume'
+                : contact
+                ? 'Contact'
+                : ''}
+            </div>
+            <div className='px-12'>
+              {aboutMe ? (
+                <p>
+                  {' '}
+                  My name is Kyle Ryan Garcia and I'm a web developer living in
+                  Hyogo, Japan.
+                </p>
+              ) : github ? (
+                <p>
+                  Visit me on Github{' '}
+                  <a
+                    className='text-blue-500'
+                    target='_blank'
+                    rel='noreferrer'
+                    href='https://github.com/AlsoPeters'
+                  >
+                    here
+                  </a>
+                  .
+                </p>
+              ) : resume ? (
+                <p>
+                  View my Resume{' '}
+                  <a
+                    className='text-blue-500'
+                    target='_blank'
+                    rel='noreferrer'
+                    href='https://www.dropbox.com/s/era9k2hv72su96c/Resume_2022.pdf?dl=0'
+                  >
+                    here
+                  </a>
+                  .
+                </p>
+              ) : contact ? (
+                <p>
+                  Send me an email{' '}
+                  <a
+                    className='text-blue-500'
+                    href='mailto:garcia.kyle.ryan@gmail.com'
+                  >
+                    here
+                  </a>
+                  .
+                </p>
+              ) : (
+                ''
+              )}
+            </div>
           </div>
         </div>
       </div>
