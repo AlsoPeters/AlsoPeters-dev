@@ -9,7 +9,7 @@ export default function Home() {
   const [currentlyListeningToTabActive, setcurrentlyListeningToTabActive] =
     useState(false);
 
-  const [aboutMe, setAboutMe] = useState(true);
+  const [info, setInfo] = useState(true);
   const [github, setGithub] = useState(false);
   const [resume, setResume] = useState(false);
   const [contact, setContact] = useState(false);
@@ -28,29 +28,29 @@ export default function Home() {
     setcurrentlyListeningToTabActive(!currentlyListeningToTabActive);
   }
 
-  function clickAboutMe() {
-    setAboutMe(true);
+  function clickInfo() {
+    setInfo(true);
     setGithub(false);
     setResume(false);
     setContact(false);
   }
 
   function clickGithub() {
-    setAboutMe(false);
+    setInfo(false);
     setGithub(true);
     setResume(false);
     setContact(false);
   }
 
   function clickResume() {
-    setAboutMe(false);
+    setInfo(false);
     setGithub(false);
     setResume(true);
     setContact(false);
   }
 
   function clickContact() {
-    setAboutMe(false);
+    setInfo(false);
     setGithub(false);
     setResume(false);
     setContact(true);
@@ -80,10 +80,10 @@ export default function Home() {
             {alsoPetersTabActive ? (
               <ul className='px-6 cursor-pointer text-gray-50'>
                 <li
-                  className={aboutMe ? 'bg-purple-500 pl-2 font-bold' : ''}
-                  onClick={clickAboutMe}
+                  className={info ? 'bg-purple-500 pl-2 font-bold' : ''}
+                  onClick={clickInfo}
                 >
-                  {aboutMe ? '> About Me' : 'About Me'}
+                  {info ? '> Info' : 'Info'}
                 </li>
                 <li
                   className={github ? 'bg-purple-500 pl-2 font-bold' : ''}
@@ -164,9 +164,9 @@ export default function Home() {
 
         <div className='flex flex-col w-2/3 ml-2 '>
           <div className='text-xl text-gray-200 border-2 border-purple-400 rounded-md grow'>
-            <div className='px-1 py-2 ml-6 text-2xl font-bold text-center text-green-500 -translate-y-6 bg-black select-none hover:cursor-crosshair max-w-fit'>
-              {aboutMe
-                ? 'About_Me'
+            <div className='px-1 py-2 ml-6 text-2xl font-bold text-center text-green-500 -translate-y-6 bg-black select-none max-w-fit'>
+              {info
+                ? 'Info'
                 : github
                 ? 'Github'
                 : resume
@@ -176,7 +176,7 @@ export default function Home() {
                 : ''}
             </div>
             <div className='px-12'>
-              {aboutMe ? (
+              {info ? (
                 <p>
                   {' '}
                   My name is Kyle Ryan Garcia and I'm a web developer living in
