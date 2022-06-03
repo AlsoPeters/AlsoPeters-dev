@@ -9,55 +9,25 @@ export default function Home() {
   const [currentlyListeningToTabActive, setcurrentlyListeningToTabActive] =
     useState(false);
 
+  const [currentContainer, setCurrentContainer] = useState(
+    'alsoPetersContainer'
+  );
   const [currentTab, setCurrentTab] = useState('info');
 
-  const [info, setInfo] = useState(true);
-  const [github, setGithub] = useState(false);
-  const [resume, setResume] = useState(false);
-  const [contact, setContact] = useState(false);
+  // function alsoPetersTabSelect() {
+  //   setAlsoPetersTabActive(true);
+  //   setlinkTabActive(false);
+  // }
 
-  function alsoPetersTabSelect() {
-    setAlsoPetersTabActive(true);
-    setlinkTabActive(false);
-  }
-
-  function linkTabSelect() {
-    setAlsoPetersTabActive(false);
-    setlinkTabActive(true);
-  }
+  // function linkTabSelect() {
+  //   setAlsoPetersTabActive(false);
+  //   setlinkTabActive(true);
+  // }
 
   function selectCurrentlyListeningTo() {
     setcurrentlyListeningToTabActive(!currentlyListeningToTabActive);
   }
 
-  // function clickInfo() {
-  //   setInfo(true);
-  //   setGithub(false);
-  //   setResume(false);
-  //   setContact(false);
-  // }
-
-  // function clickGithub() {
-  //   setInfo(false);
-  //   setGithub(true);
-  //   setResume(false);
-  //   setContact(false);
-  // }
-
-  // function clickResume() {
-  //   setInfo(false);
-  //   setGithub(false);
-  //   setResume(true);
-  //   setContact(false);
-  // }
-
-  // function clickContact() {
-  //   setInfo(false);
-  //   setGithub(false);
-  //   setResume(false);
-  //   setContact(true);
-  // }
-  //test
   return (
     <>
       <Head>
@@ -68,18 +38,18 @@ export default function Home() {
         <div className='flex flex-col w-1/3 mr-2'>
           <div
             className={
-              alsoPetersTabActive
+              currentContainer === 'alsoPetersContainer'
                 ? 'mb-1 border-2 text-purple-500 border-purple-400 rounded-md grow'
                 : 'mb-1 border-2 text-white border-gray-500 rounded-md flex-none'
             }
           >
             <div
-              onClick={alsoPetersTabSelect}
+              onClick={() => setCurrentContainer('alsoPetersContainer')}
               className='px-1 py-2 ml-6 text-2xl text-center -translate-y-6 bg-black select-none hover:cursor-pointer max-w-fit'
             >
               AlsoPeters
             </div>
-            {alsoPetersTabActive ? (
+            {currentContainer === 'alsoPetersContainer' ? (
               <ul className='px-6 cursor-pointer text-gray-50'>
                 <li
                   className={
@@ -127,13 +97,13 @@ export default function Home() {
 
           <div
             className={
-              linkTabActive
+              currentContainer === 'linkContainer'
                 ? 'mb-1 border-2 text-purple-500 border-purple-400 rounded-md grow mt-4'
                 : 'mb-1 border-2 h-16 text-white border-gray-500 rounded-md flex-none mt-4'
             }
           >
             <div
-              onClick={linkTabSelect}
+              onClick={() => setCurrentContainer('linkContainer')}
               className='px-1 ml-6 text-2xl text-center -translate-y-4 bg-black select-none max-w-fit hover:cursor-pointer '
             >
               Links/Projects
@@ -181,24 +151,24 @@ export default function Home() {
         <div className='flex flex-col w-2/3 ml-2 '>
           <div className='text-xl text-gray-200 border-2 border-purple-400 rounded-md grow'>
             <div className='px-1 py-2 ml-6 text-2xl font-bold text-center text-green-500 -translate-y-6 bg-black select-none max-w-fit'>
-              {info
+              {currentTab === 'info'
                 ? 'Info'
-                : github
+                : currentTab === 'github'
                 ? 'Github'
-                : resume
+                : currentTab === 'resume'
                 ? 'Resume'
-                : contact
+                : currentTab === 'contact'
                 ? 'Contact'
                 : ''}
             </div>
             <div className='px-12'>
-              {info ? (
+              {currentTab === 'info' ? (
                 <p>
                   {' '}
                   My name is Kyle Ryan Garcia and I'm a web developer living in
                   Hyogo, Japan.
                 </p>
-              ) : github ? (
+              ) : currentTab === 'github' ? (
                 <p>
                   Visit me on Github{' '}
                   <a
@@ -211,7 +181,7 @@ export default function Home() {
                   </a>
                   .
                 </p>
-              ) : resume ? (
+              ) : currentTab === 'resume' ? (
                 <p>
                   View my Resume{' '}
                   <a
@@ -224,7 +194,7 @@ export default function Home() {
                   </a>
                   .
                 </p>
-              ) : contact ? (
+              ) : currentTab === 'contact' ? (
                 <p>
                   Send me an email{' '}
                   <a
