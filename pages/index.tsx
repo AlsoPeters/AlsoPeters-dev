@@ -48,7 +48,7 @@ export default function Home() {
     setResume(true);
     setContact(false);
   }
-
+  //test
   function clickContact() {
     setInfo(false);
     setGithub(false);
