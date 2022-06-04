@@ -9,6 +9,8 @@ export default function Home() {
   const [currentlyListeningToTabActive, setcurrentlyListeningToTabActive] =
     useState(false);
 
+  const [currentTab, setCurrentTab] = useState('info');
+
   const [info, setInfo] = useState(true);
   const [github, setGithub] = useState(false);
   const [resume, setResume] = useState(false);
@@ -28,34 +30,34 @@ export default function Home() {
     setcurrentlyListeningToTabActive(!currentlyListeningToTabActive);
   }
 
-  function clickInfo() {
-    setInfo(true);
-    setGithub(false);
-    setResume(false);
-    setContact(false);
-  }
+  // function clickInfo() {
+  //   setInfo(true);
+  //   setGithub(false);
+  //   setResume(false);
+  //   setContact(false);
+  // }
 
-  function clickGithub() {
-    setInfo(false);
-    setGithub(true);
-    setResume(false);
-    setContact(false);
-  }
+  // function clickGithub() {
+  //   setInfo(false);
+  //   setGithub(true);
+  //   setResume(false);
+  //   setContact(false);
+  // }
 
-  function clickResume() {
-    setInfo(false);
-    setGithub(false);
-    setResume(true);
-    setContact(false);
-  }
+  // function clickResume() {
+  //   setInfo(false);
+  //   setGithub(false);
+  //   setResume(true);
+  //   setContact(false);
+  // }
+
+  // function clickContact() {
+  //   setInfo(false);
+  //   setGithub(false);
+  //   setResume(false);
+  //   setContact(true);
+  // }
   //test
-  function clickContact() {
-    setInfo(false);
-    setGithub(false);
-    setResume(false);
-    setContact(true);
-  }
-
   return (
     <>
       <Head>
@@ -80,28 +82,42 @@ export default function Home() {
             {alsoPetersTabActive ? (
               <ul className='px-6 cursor-pointer text-gray-50'>
                 <li
-                  className={info ? 'bg-purple-500 pl-2 font-bold' : ''}
-                  onClick={clickInfo}
+                  className={
+                    currentTab === 'info' ? 'bg-purple-500 pl-2 font-bold' : ''
+                  }
+                  onClick={() => setCurrentTab('info')}
                 >
-                  {info ? '> Info' : 'Info'}
+                  {currentTab === 'info' ? '> Info' : 'Info'}
                 </li>
                 <li
-                  className={github ? 'bg-purple-500 pl-2 font-bold' : ''}
-                  onClick={clickGithub}
+                  className={
+                    currentTab === 'github'
+                      ? 'bg-purple-500 pl-2 font-bold'
+                      : ''
+                  }
+                  onClick={() => setCurrentTab('github')}
                 >
-                  {github ? '> Github' : 'Github'}
+                  {currentTab === 'github' ? '> Github' : 'Github'}
                 </li>
                 <li
-                  className={resume ? 'bg-purple-500 pl-2 font-bold' : ''}
-                  onClick={clickResume}
+                  className={
+                    currentTab === 'resume'
+                      ? 'bg-purple-500 pl-2 font-bold'
+                      : ''
+                  }
+                  onClick={() => setCurrentTab('resume')}
                 >
-                  {resume ? '> Resume' : 'Resume'}
+                  {currentTab === 'resume' ? '> Resume' : 'Resume'}
                 </li>
                 <li
-                  className={contact ? 'pl-2 font-bold bg-purple-500' : ''}
-                  onClick={clickContact}
+                  className={
+                    currentTab === 'contact'
+                      ? 'pl-2 font-bold bg-purple-500'
+                      : ''
+                  }
+                  onClick={() => setCurrentTab('contact')}
                 >
-                  {contact ? '> Contact' : 'Contact'}
+                  {currentTab === 'contact' ? '> Contact' : 'Contact'}
                 </li>
               </ul>
             ) : (
