@@ -2,6 +2,19 @@ import Head from 'next/head';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import Moogle from '../public/assets/moogle_forward.gif';
+interface TabMapInterface {
+  info: string;
+  github: string;
+  resume: string;
+  contact: string;
+}
+
+const tabMap: TabMapInterface = {
+  info: 'Info',
+  github: 'Github',
+  resume: 'Resume',
+  contact: 'Contact',
+};
 
 export default function Home() {
   const [alsoPetersTabActive, setAlsoPetersTabActive] = useState(true);
@@ -9,20 +22,22 @@ export default function Home() {
   const [currentlyListeningToTabActive, setcurrentlyListeningToTabActive] =
     useState(false);
 
-  const [currentContainer, setCurrentContainer] = useState(
-    'alsoPetersContainer'
-  );
   const [currentTab, setCurrentTab] = useState('info');
 
-  // function alsoPetersTabSelect() {
-  //   setAlsoPetersTabActive(true);
-  //   setlinkTabActive(false);
-  // }
+  const [info, setInfo] = useState(true);
+  const [github, setGithub] = useState(false);
+  const [resume, setResume] = useState(false);
+  const [contact, setContact] = useState(false);
 
-  // function linkTabSelect() {
-  //   setAlsoPetersTabActive(false);
-  //   setlinkTabActive(true);
-  // }
+  function alsoPetersTabSelect() {
+    setAlsoPetersTabActive(true);
+    setlinkTabActive(false);
+  }
+
+  function linkTabSelect() {
+    setAlsoPetersTabActive(false);
+    setlinkTabActive(true);
+  }
 
   function selectCurrentlyListeningTo() {
     setcurrentlyListeningToTabActive(!currentlyListeningToTabActive);
@@ -38,18 +53,18 @@ export default function Home() {
         <div className='flex flex-col w-1/3 mr-2'>
           <div
             className={
-              currentContainer === 'alsoPetersContainer'
+              alsoPetersTabActive
                 ? 'mb-1 border-2 text-purple-500 border-purple-400 rounded-md grow'
                 : 'mb-1 border-2 text-white border-gray-500 rounded-md flex-none'
             }
           >
             <div
-              onClick={() => setCurrentContainer('alsoPetersContainer')}
+              onClick={alsoPetersTabSelect}
               className='px-1 py-2 ml-6 text-2xl text-center -translate-y-6 bg-black select-none hover:cursor-pointer max-w-fit'
             >
               AlsoPeters
             </div>
-            {currentContainer === 'alsoPetersContainer' ? (
+            {alsoPetersTabActive ? (
               <ul className='px-6 cursor-pointer text-gray-50'>
                 <li
                   className={
@@ -97,13 +112,13 @@ export default function Home() {
 
           <div
             className={
-              currentContainer === 'linkContainer'
+              linkTabActive
                 ? 'mb-1 border-2 text-purple-500 border-purple-400 rounded-md grow mt-4'
                 : 'mb-1 border-2 h-16 text-white border-gray-500 rounded-md flex-none mt-4'
             }
           >
             <div
-              onClick={() => setCurrentContainer('linkContainer')}
+              onClick={linkTabSelect}
               className='px-1 ml-6 text-2xl text-center -translate-y-4 bg-black select-none max-w-fit hover:cursor-pointer '
             >
               Links/Projects
@@ -151,24 +166,18 @@ export default function Home() {
         <div className='flex flex-col w-2/3 ml-2 '>
           <div className='text-xl text-gray-200 border-2 border-purple-400 rounded-md grow'>
             <div className='px-1 py-2 ml-6 text-2xl font-bold text-center text-green-500 -translate-y-6 bg-black select-none max-w-fit'>
-              {currentTab === 'info'
-                ? 'Info'
-                : currentTab === 'github'
-                ? 'Github'
-                : currentTab === 'resume'
-                ? 'Resume'
-                : currentTab === 'contact'
-                ? 'Contact'
-                : ''}
+              {tabMap[currentTab as keyof TabMapInterface]}
             </div>
             <div className='px-12'>
-              {currentTab === 'info' ? (
+              {currentTab === 'info' && (
                 <p>
                   {' '}
                   My name is Kyle Ryan Garcia and I'm a web developer living in
                   Hyogo, Japan.
                 </p>
-              ) : currentTab === 'github' ? (
+              )}
+
+              {currentTab === 'github' && (
                 <p>
                   Visit me on Github{' '}
                   <a
@@ -181,7 +190,9 @@ export default function Home() {
                   </a>
                   .
                 </p>
-              ) : currentTab === 'resume' ? (
+              )}
+
+              {currentTab === 'resume' && (
                 <p>
                   View my Resume{' '}
                   <a
@@ -194,7 +205,8 @@ export default function Home() {
                   </a>
                   .
                 </p>
-              ) : currentTab === 'contact' ? (
+              )}
+              {currentTab === 'contact' && (
                 <p>
                   Send me an email{' '}
                   <a
@@ -205,8 +217,6 @@ export default function Home() {
                   </a>
                   .
                 </p>
-              ) : (
-                ''
               )}
             </div>
           </div>
