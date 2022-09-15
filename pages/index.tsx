@@ -164,9 +164,8 @@ export default function Home() {
             <div className='px-12'>
               {currentTab === 'info' ? (
                 <p>
-                  {' '}
-                  My name is Kyle Ryan Garcia and I'm a web developer living in
-                  Hyogo, Japan.
+                  My name is Kyle Ryan Garcia and I{"'"}m a web developer living
+                  in Hyogo, Japan.
                 </p>
               ) : currentTab === 'github' ? (
                 <p>
