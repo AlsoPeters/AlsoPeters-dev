@@ -7,6 +7,7 @@ interface TabMapInterface {
   github: string;
   resume: string;
   contact: string;
+  devFinder: string;
 }
 
 const tabMap: TabMapInterface = {
@@ -14,6 +15,7 @@ const tabMap: TabMapInterface = {
   github: 'Github',
   resume: 'Resume',
   contact: 'Contact',
+  devFinder: 'DevFinder',
 };
 
 export default function Home() {
@@ -23,11 +25,6 @@ export default function Home() {
     useState(false);
 
   const [currentTab, setCurrentTab] = useState('info');
-
-  const [info, setInfo] = useState(true);
-  const [github, setGithub] = useState(false);
-  const [resume, setResume] = useState(false);
-  const [contact, setContact] = useState(false);
 
   function alsoPetersTabSelect() {
     setAlsoPetersTabActive(true);
@@ -121,10 +118,25 @@ export default function Home() {
               onClick={linkTabSelect}
               className='px-1 ml-6 text-2xl text-center -translate-y-4 bg-black select-none max-w-fit hover:cursor-pointer '
             >
-              Links/Projects
+              Projects
             </div>
+            {linkTabActive ? (
+              <ul className='px-6 cursor-pointer text-gray-50'>
+                <li
+                  className={
+                    currentTab === 'devFinder'
+                      ? 'bg-purple-500 pl-2 font-bold'
+                      : ''
+                  }
+                  onClick={() => setCurrentTab('devFinder')}
+                >
+                  {currentTab === 'devFinder' ? '> DevFinder' : 'DevFinder'}
+                </li>
+              </ul>
+            ) : (
+              <></>
+            )}
           </div>
-
           <div
             className={
               'mb-1 border-2 h-64 text-white border-gray-500 rounded-md flex-none mt-4'
@@ -216,6 +228,19 @@ export default function Home() {
                   </a>
                   .
                 </p>
+              )}
+              {currentTab === 'devFinder' && (
+                <div>
+                  <p>Search Github for a user and their info.</p>
+                  <a
+                    className='text-green-600'
+                    target='_blank'
+                    rel='noreferrer'
+                    href='https://fm-github-user-search.vercel.app/'
+                  >
+                    {'>'} Try it {'<'}
+                  </a>
+                </div>
               )}
             </div>
           </div>
